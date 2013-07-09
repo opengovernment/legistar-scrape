@@ -1,0 +1,14 @@
+# ====================
+# Database
+# ====================
+pymongo
+
+# ====================
+# Legistar scraping
+# ====================
+git+git://github.com/fgregg/legistar-scrape.git#egg=legistar-scraper
+BeautifulSoup
+BeautifulSoup4
+pdfminer
+slate
+git+https://github.com/abielr/mechanize.git#egg=mechanize

@@ -51,4 +51,4 @@ for event in agenda_list:
   event['Updated Date'] = datetime.datetime.utcnow()
 
   council_agenda_id = council_agendas.insert(event)
-  print 'saving', event['Name'], council_agenda_id
+  print 'saving', event['Meeting Date'], council_agenda_id

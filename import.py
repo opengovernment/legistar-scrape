@@ -14,11 +14,11 @@ scraper = LegistarScraper(config)
 # http://api.mongodb.org/python/current/tutorial.html
 from pymongo import MongoClient
 client = MongoClient()
-db = client.opengovernment_local
+db = client.opengovernment_import
 
 
 # -----------------Agendas---------------------
-
+print "Importing Agendas..."
 # Example agenda object returned from the scraper
 # {
 #   u'Meeting Date': {
@@ -36,19 +36,47 @@ db = client.opengovernment_local
 #   u'Minutes': u'Not available'
 # }
 
-# get a handle on the collection
+# get a handle on the council_agendas collection
 council_agendas = db.council_agendas
 
 print 'clearing out existing agendas'
-council_agendas.remove({"Municipality": "Philadelphia"})
+council_agendas.remove({"Municipality": "pa-philadelphia"})
 
 # get all agenda items
 agenda_list = scraper.councilCalendar('all')
 
 for event in agenda_list:
-  event['Municipality'] = 'Philadelphia'
+  event['Municipality'] = 'pa-philadelphia'
   event['Created Date'] = datetime.datetime.utcnow()
-  event['Updated Date'] = datetime.datetime.utcnow()
 
   council_agenda_id = council_agendas.insert(event)
   print 'saving', event['Meeting Date'], council_agenda_id
+
+
+# -----------------Council members---------------------
+print "Importing Council Members..."
+# Example council member object returned from the scraper
+# {
+#   u'E-mail': {
+#     'url': u'mailto:blondell.reynolds.brown@phila.gov', 
+#     'label': u'blondell.reynolds.brown@phila.gov'
+#   }, 
+#   u'Web Site': u'', 
+#   u'Person Name': u'Councilmember Reynolds Brown'
+# }
+
+# get a handle on the council_members collection
+council_members = db.council_members
+
+print 'clearing out existing council_members'
+council_members.remove({"Municipality": "pa-philadelphia"})
+
+# get all agenda items
+members_list = scraper.councilMembers()
+
+for member in members_list:
+  member['Municipality'] = 'pa-philadelphia'
+  member['Created Date'] = datetime.datetime.utcnow()
+
+  council_member_id = council_members.insert(member)
+  print 'saving', member['Person Name'], council_member_id

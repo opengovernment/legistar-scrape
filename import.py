@@ -7,6 +7,7 @@ import datetime
 
 config = Config(
   hostname = 'phila.legistar.com',
+  fulltext=True,
 ).defaults(DEFAULT_CONFIG)
 scraper = LegistarScraper(config)
 
@@ -14,7 +15,7 @@ scraper = LegistarScraper(config)
 # http://api.mongodb.org/python/current/tutorial.html
 from pymongo import MongoClient
 client = MongoClient()
-db = client.opengovernment_import
+db = client.scraped_local_gov
 
 
 # -----------------Agendas---------------------

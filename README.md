@@ -11,6 +11,11 @@ cd opengovernment-legistar-scrape
 pip install -r requirements.txt
 ```
 
+Copy over the settings file and update with your parameters
+```console
+cp settings.py.example settings.py
+```
+
 ## Usage
 
 Save Council Agendas and Council Members to opengovernment_import mongo collection

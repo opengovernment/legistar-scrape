@@ -1,0 +1,5 @@
+SCRAPER_TARGETS = [
+  {'municipality': 'pa-philadelphia', 'endpoint': 'phila.legistar.com'}
+]
+MONGO_HOST = 'mongodb://localhost:27017/ ' # 'mongodb://username:password@host:port/database'
+MONGO_DATABASE = 'scraped_local_gov'

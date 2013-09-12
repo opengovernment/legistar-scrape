@@ -86,4 +86,4 @@ for scraper_target in settings.SCRAPER_TARGETS:
     member['Created Date'] = datetime.datetime.utcnow()
 
     council_member_id = council_members.insert(member)
-    print 'saving', member['Person Name'], council_member_id
+    print 'saving', member['Person Name'].decode('utf-8'), council_member_id

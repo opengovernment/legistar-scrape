@@ -1,0 +1,15 @@
+OpenGovernment.org Legistar Importer
+
+Uses Legistar Scraper - a python library for scraping Legistar sites -- legislation management sites hosted by by Granicus.
+
+Installation
+git clone git://github.com/opengovernment/opengovernment-legistar-scrape.git
+cd opengovernment-legistar-scrape
+pip install -r requirements.txt
+Copy over the settings file and update with your parameters
+
+cp settings.py.example settings.py
+Usage
+Save Council Agendas and Council Members to opengovernment_import mongo collection
+
+python import.py
